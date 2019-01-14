@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace GoalCalendar.Utilities.Exceptions
+﻿namespace GoalCalendar.Utilities.Exceptions
 {
     public class CustomErrorResponse
     {
