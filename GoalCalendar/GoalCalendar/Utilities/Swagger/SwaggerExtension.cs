@@ -11,8 +11,8 @@ namespace GoalCalendar.Utilities.Swagger
             services.AddSwaggerGen(configuration =>
                 configuration.SwaggerDoc("v1", new Info
                 {
-                    Title = "API",
-                    Description = "GoalCalendar Web API",
+                    Title = "Goal Calendar",
+                    Description = "A simple ASP.NET Core Web API for a calendar application",
                 }));
         }
 
