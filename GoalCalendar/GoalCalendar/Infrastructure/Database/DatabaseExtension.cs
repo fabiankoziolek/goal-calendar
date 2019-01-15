@@ -6,9 +6,9 @@ namespace GoalCalendar.Infrastructure.Database
 {
     public static class DatabaseExtension
     {
-        public static void AddDbContext(this IServiceCollection services, IConfiguration configuration)
+        public static void AddDatabaseContext(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<GoalCalendarContext>(opt =>
+            services.AddDbContext<DatabaseContext>(opt =>
                 opt.UseSqlServer(configuration.GetConnectionString("goalCalendar")));
         }
     }
