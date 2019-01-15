@@ -1,7 +1,6 @@
 ﻿using GoalCalendar.Infrastructure.Database;
 ﻿using GoalCalendar.Utilities.Swagger;
 using GoalCalendar.Utilities.AutomaticDI;
-using GoalCalendar.Utilities.Swagger;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
