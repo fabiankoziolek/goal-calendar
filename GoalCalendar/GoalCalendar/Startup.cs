@@ -1,4 +1,5 @@
 ﻿using GoalCalendar.Infrastructure.Database;
+﻿using GoalCalendar.Utilities.Swagger;
 using GoalCalendar.Utilities.AutomaticDI;
 using GoalCalendar.Utilities.Swagger;
 using Microsoft.AspNetCore.Builder;
@@ -23,6 +24,7 @@ namespace GoalCalendar
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddSwagger();
+
             services.ConfigureDependencies();
             services.AddDatabaseContext(Configuration);
         }
