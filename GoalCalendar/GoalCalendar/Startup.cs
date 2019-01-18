@@ -1,4 +1,5 @@
-﻿using GoalCalendar.Infrastructure.Database;
+﻿using GoalCalendar.Infrastructure.AutoMapper;
+using GoalCalendar.Infrastructure.Database;
 using GoalCalendar.Utilities.AutomaticDI;
 using GoalCalendar.Utilities.Swagger;
 using Microsoft.AspNetCore.Builder;
@@ -25,6 +26,7 @@ namespace GoalCalendar
             services.AddSwagger();
             services.ConfigureDependencies();
             services.AddDatabaseContext(Configuration);
+            services.AddMapper();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

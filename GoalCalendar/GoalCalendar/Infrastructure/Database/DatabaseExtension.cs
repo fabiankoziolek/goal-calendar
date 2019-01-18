@@ -9,7 +9,7 @@ namespace GoalCalendar.Infrastructure.Database
         public static void AddDatabaseContext(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<GoalCalendarContext>(opt =>
-                opt.UseSqlServer(configuration.GetConnectionString("goalCalendar")));
+                opt.UseSqlServer(configuration.GetConnectionString("GoalCalendarDb")));
         }
     }
 }
