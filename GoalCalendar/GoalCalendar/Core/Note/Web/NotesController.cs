@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
@@ -23,7 +22,7 @@ namespace GoalCalendar.Core.Note.Web
             var note = _notesService.Get(id);
             return _mapper.Map<NoteResponse>(note);
         }
-        
+
         [HttpGet("range")]
         public ActionResult<IList<NoteResponse>> GetByRange(NoteRangeRequest rangeRequest)
         {
@@ -37,9 +36,8 @@ namespace GoalCalendar.Core.Note.Web
             var newNote = _mapper.Map<Note>(note);
             _notesService.Add(newNote);
             return NoContent();
-
         }
-        
+
         [HttpPut("id")]
         public ActionResult Update(int id, NoteRequest note)
         {
@@ -47,7 +45,7 @@ namespace GoalCalendar.Core.Note.Web
             _notesService.Update(noteToUpdate, id);
             return NoContent();
         }
-        
+
         [HttpDelete("id")]
         public ActionResult Delete(int id)
         {
