@@ -23,7 +23,7 @@ namespace GoalCalendar.Core.Note.TimeRange.Strategies
         {
             return await _context.Notes
                 .Where(n => n.UserId.Equals(id) && n.DateTime.Date.ToString("d").Equals(day.Date.ToString("d")))
-                .ToListAsync();
+                .ToListAsync().ConfigureAwait(false);
         }
     }
 }

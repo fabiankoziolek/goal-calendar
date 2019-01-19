@@ -3,7 +3,6 @@ using System.Linq;
 using GoalCalendar.Core.Note.TimeRange.Strategies;
 using GoalCalendar.Core.Note.TimeRange.Strategies.Interface;
 using GoalCalendar.Infrastructure.Database;
-using GoalCalendar.Infrastructure.Database.Interfaces;
 
 
 namespace GoalCalendar.Core.Note.TimeRange

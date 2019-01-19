@@ -24,7 +24,7 @@ namespace GoalCalendar.Core.Note.TimeRange.Strategies
             return await _context.Notes
                 .Where(n => n.UserId.Equals(id) &&
                             n.DateTime.Date > day.Date.AddDays(-day.DayOfYear) &&
-                            n.DateTime.Date < day.Date.AddDays(6 - day.DayOfYear)).ToListAsync();
+                            n.DateTime.Date < day.Date.AddDays(6 - day.DayOfYear)).ToListAsync().ConfigureAwait(false);
         }
     }
 }

@@ -24,9 +24,8 @@ namespace GoalCalendar.Core.Note
 
         public async Task<Note> Get(int id)
         {
-            if (await Exists(id))
-                return await _context.Notes.FirstOrDefaultAsync(n => n.Id.Equals(id));
-            throw new ObjectNotFoundException("Not found", $"Note with id: {id} not found");
+            if (!await Exists(id)) throw new ObjectNotFoundException("Not found", $"Note with id: {id} not found");
+            return await _context.Notes.FirstOrDefaultAsync(n => n.Id.Equals(id)).ConfigureAwait(false);
         }
 
         public async Task<IList<Note>> Get(NoteRangeRequest request)
