@@ -1,6 +1,7 @@
-﻿using GoalCalendar.Infrastructure.Database;
-﻿using GoalCalendar.Utilities.Swagger;
+﻿using GoalCalendar.Infrastructure.AutoMapper;
+using GoalCalendar.Infrastructure.Database;
 using GoalCalendar.Utilities.AutomaticDI;
+using GoalCalendar.Utilities.Swagger;
 using GoalCalendar.Utilities.Exceptions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -24,9 +25,9 @@ namespace GoalCalendar
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddSwagger();
-
             services.ConfigureDependencies();
             services.AddDatabaseContext(Configuration);
+            services.AddMapper();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
