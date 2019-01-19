@@ -1,6 +1,7 @@
 ﻿using GoalCalendar.Infrastructure.Database;
 ﻿using GoalCalendar.Utilities.Swagger;
 using GoalCalendar.Utilities.AutomaticDI;
+using GoalCalendar.Utilities.Exceptions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -41,6 +42,7 @@ namespace GoalCalendar
                 app.UseHsts();
             }
 
+            app.UseMiddleware<ExceptionHandlingMiddleware>();
             app.UseHttpsRedirection();
             app.UseMvc();
         }
