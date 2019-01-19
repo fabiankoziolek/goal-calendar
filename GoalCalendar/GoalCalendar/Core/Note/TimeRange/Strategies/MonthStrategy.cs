@@ -3,25 +3,34 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using GoalCalendar.Core.Note.TimeRange.Strategies.Interface;
-using GoalCalendar.Infrastructure.Database;
+using GoalCalendar.Infrastructure.Database.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace GoalCalendar.Core.Note.TimeRange.Strategies
 {
-    public class MonthStrategy : IRangeStrategy
+    public class MonthStrategy : ITimeRangeStrategy
     {
-        private readonly GoalCalendarContext _db;
+        private readonly INotesRepository _context;
+        private static MonthStrategy _monthStrategy;
+        public Range Range { get; set; }
 
-        public MonthStrategy(GoalCalendarContext db)
+        private MonthStrategy(INotesRepository context)
         {
-            _db = db;
+            Range = Range.Month;
+            _context = context;
         }
+
 
         public async Task<IList<Note>> GetByRange(DateTime day, int id)
         {
-            return await _db.Notes
+            return await _context.Notes
                 .Where(n => n.UserId.Equals(id) &&
                             n.DateTime.Month.Equals(day.Month)).ToListAsync();
+        }
+
+        public static ITimeRangeStrategy GetStrategy(INotesRepository context)
+        {
+            return _monthStrategy ?? (_monthStrategy = new MonthStrategy(context));
         }
     }
 }
