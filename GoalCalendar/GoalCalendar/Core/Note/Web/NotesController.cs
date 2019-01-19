@@ -26,7 +26,7 @@ namespace GoalCalendar.Core.Note.Web
             return _mapper.Map<NoteResponse>(note);
         }
 
-        [HttpGet("range")]
+        [HttpGet("/range")]
         public async Task<IList<NoteResponse>> GetByRange(DateTime dateTime, Range range, int userId)
         {
             var rangeRequest = new NoteRangeRequest()
@@ -47,7 +47,7 @@ namespace GoalCalendar.Core.Note.Web
             return NoContent();
         }
 
-        [HttpPut("id")]
+        [HttpPut("{id}")]
         public async Task<IActionResult> Update(int id, NoteRequest note)
         {
             var noteToUpdate = _mapper.Map<Note>(note);
@@ -55,7 +55,7 @@ namespace GoalCalendar.Core.Note.Web
             return NoContent();
         }
 
-        [HttpDelete("id")]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             await _notesService.Delete(id);
