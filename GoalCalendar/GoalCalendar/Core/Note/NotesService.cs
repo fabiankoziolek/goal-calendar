@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using GoalCalendar.Core.Note.TimeRange;
 using GoalCalendar.Core.Note.TimeRange.Strategies.Interface;
 using GoalCalendar.Core.Note.Web;
 using GoalCalendar.Infrastructure.Database;
@@ -13,10 +14,12 @@ namespace GoalCalendar.Core.Note
     {
         private readonly GoalCalendarContext _context;
         private ITimeRangeStrategy _timeRangeStrategy;
+        private readonly ITimeRangeStrategiesService _timeRangeStrategyService;
 
-        public NotesService(GoalCalendarContext context)
+        public NotesService(GoalCalendarContext context, ITimeRangeStrategiesService timeRangeStrategyService)
         {
             _context = context;
+            _timeRangeStrategyService = timeRangeStrategyService;
         }
 
         public async Task<Note> Get(int id)
@@ -28,6 +31,7 @@ namespace GoalCalendar.Core.Note
 
         public async Task<IList<Note>> Get(NoteRangeRequest request)
         {
+            _timeRangeStrategy = _timeRangeStrategyService.GetStrategy(request.Range);
             return await _timeRangeStrategy.GetByRange(request.DateTime, request.UserId);
         }
 

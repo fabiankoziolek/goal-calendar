@@ -1,5 +1,8 @@
+using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using AutoMapper;
+using GoalCalendar.Core.Note.TimeRange;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GoalCalendar.Core.Note.Web
@@ -16,40 +19,46 @@ namespace GoalCalendar.Core.Note.Web
             _mapper = mapper;
         }
 
-        [HttpGet("id")]
-        public ActionResult<NoteResponse> GetById(int id)
+        [HttpGet]
+        public async Task<NoteResponse> GetById(int id)
         {
-            var note = _notesService.Get(id);
+            var note = await _notesService.Get(id);
             return _mapper.Map<NoteResponse>(note);
         }
 
         [HttpGet("range")]
-        public ActionResult<IList<NoteResponse>> GetByRange(NoteRangeRequest rangeRequest)
+        public async Task<IList<NoteResponse>> GetByRange(DateTime dateTime, Range range, int userId)
         {
-            var notes = _notesService.Get(rangeRequest);
-            return Ok(_mapper.Map<IList<NoteResponse>>(notes));
+            var rangeRequest = new NoteRangeRequest()
+            {
+                DateTime = dateTime,
+                Range = range,
+                UserId = userId
+            };
+            var notes = await _notesService.Get(rangeRequest);
+            return _mapper.Map<IList<NoteResponse>>(notes);
         }
 
         [HttpPost]
-        public ActionResult Add(NoteRequest note)
+        public async Task<IActionResult> Add(NoteRequest note)
         {
             var newNote = _mapper.Map<Note>(note);
-            _notesService.Add(newNote);
+            await _notesService.Add(newNote);
             return NoContent();
         }
 
         [HttpPut("id")]
-        public ActionResult Update(int id, NoteRequest note)
+        public async Task<IActionResult> Update(int id, NoteRequest note)
         {
             var noteToUpdate = _mapper.Map<Note>(note);
-            _notesService.Update(noteToUpdate, id);
+            await _notesService.Update(noteToUpdate, id);
             return NoContent();
         }
 
         [HttpDelete("id")]
-        public ActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            _notesService.Delete(id);
+            await _notesService.Delete(id);
             return NoContent();
         }
     }
