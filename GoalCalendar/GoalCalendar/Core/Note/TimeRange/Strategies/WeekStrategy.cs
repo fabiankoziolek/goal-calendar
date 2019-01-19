@@ -11,15 +11,13 @@ namespace GoalCalendar.Core.Note.TimeRange.Strategies
     public class WeekStrategy : ITimeRangeStrategy
     {
         private readonly INotesRepository _context;
-        private static WeekStrategy _weekStrategy;
         public Range Range { get; set; }
 
-        private WeekStrategy(INotesRepository context)
+        public WeekStrategy(INotesRepository context)
         {
             Range = Range.Week;
             _context = context;
         }
-
 
         public async Task<IList<Note>> GetByRange(DateTime day, int id)
         {
@@ -27,11 +25,6 @@ namespace GoalCalendar.Core.Note.TimeRange.Strategies
                 .Where(n => n.UserId.Equals(id) &&
                             n.DateTime.Date > day.Date.AddDays(-(int) day.DayOfWeek) &&
                             n.DateTime.Date < day.Date.AddDays(6 - (int) day.DayOfWeek)).ToListAsync();
-        }
-
-        public static ITimeRangeStrategy GetStrategy(INotesRepository context)
-        {
-            return _weekStrategy ?? (_weekStrategy = new WeekStrategy(context));
         }
     }
 }

@@ -11,26 +11,19 @@ namespace GoalCalendar.Core.Note.TimeRange.Strategies
     public class MonthStrategy : ITimeRangeStrategy
     {
         private readonly INotesRepository _context;
-        private static MonthStrategy _monthStrategy;
         public Range Range { get; set; }
 
-        private MonthStrategy(INotesRepository context)
+        public MonthStrategy(INotesRepository context)
         {
             Range = Range.Month;
             _context = context;
         }
-
 
         public async Task<IList<Note>> GetByRange(DateTime day, int id)
         {
             return await _context.Notes
                 .Where(n => n.UserId.Equals(id) &&
                             n.DateTime.Month.Equals(day.Month)).ToListAsync();
-        }
-
-        public static ITimeRangeStrategy GetStrategy(INotesRepository context)
-        {
-            return _monthStrategy ?? (_monthStrategy = new MonthStrategy(context));
         }
     }
 }

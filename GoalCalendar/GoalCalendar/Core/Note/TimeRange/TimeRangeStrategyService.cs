@@ -10,26 +10,26 @@ namespace GoalCalendar.Core.Note.TimeRange
     public class TimeRangeStrategyService : ITimeRangeStrategiesService
     {
         private readonly INotesRepository _context;
-        private readonly IList<ITimeRangeStrategy> _strategiesAggregate;
+        private readonly IList<ITimeRangeStrategy> _strategies;
 
         public TimeRangeStrategyService(INotesRepository context)
         {
             _context = context;
-            _strategiesAggregate = new List<ITimeRangeStrategy>();
+            _strategies = new List<ITimeRangeStrategy>();
             PopulateStrategiesAggregate();
         }
 
         public ITimeRangeStrategy GetStrategy(Range range)
         {
-            return _strategiesAggregate.FirstOrDefault(s => s.Range.Equals(range));
+            return _strategies.FirstOrDefault(s => s.Range.Equals(range));
         }
 
         private void PopulateStrategiesAggregate()
         {
-            _strategiesAggregate.Add(DayStrategy.GetStrategy(_context));
-            _strategiesAggregate.Add(WeekStrategy.GetStrategy(_context));
-            _strategiesAggregate.Add(MonthStrategy.GetStrategy(_context));
-            _strategiesAggregate.Add(YearStrategy.GetStrategy(_context));
+            _strategies.Add(new DayStrategy(_context));
+            _strategies.Add(new WeekStrategy(_context));
+            _strategies.Add(new MonthStrategy(_context));
+            _strategies.Add(new MonthStrategy(_context));
         }
     }
 }
