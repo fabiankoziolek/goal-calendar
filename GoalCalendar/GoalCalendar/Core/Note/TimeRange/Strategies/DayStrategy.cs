@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using GoalCalendar.Core.Note.TimeRange.Strategies.Interface;
+using GoalCalendar.Infrastructure.Database;
 using GoalCalendar.Infrastructure.Database.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,10 +11,10 @@ namespace GoalCalendar.Core.Note.TimeRange.Strategies
 {
     public class DayStrategy : ITimeRangeStrategy
     {
-        private readonly INotesRepository _context;
+        private readonly GoalCalendarContext _context;
         public Range Range { get; set; }
 
-        public DayStrategy(INotesRepository context)
+        public DayStrategy(GoalCalendarContext context)
         {
             _context = context;
             Range = Range.Day;
