@@ -22,7 +22,7 @@ namespace GoalCalendar.Core.Note.TimeRange.Strategies
         public async Task<IList<Note>> GetByRange(DateTime day, int id)
         {
             return await _context.Notes
-                .Where(n => n.UserId.Equals(id) && n.DateTime.Year == day.Year).ToListAsync();
+                .Where(n => n.UserId.Equals(id) && n.DateTime.Year == day.Year).ToListAsync().ConfigureAwait(false);
         }
     }
 }

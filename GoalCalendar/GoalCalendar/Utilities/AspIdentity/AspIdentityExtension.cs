@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using GoalCalendar.Infrastructure.Database;
+﻿using GoalCalendar.Infrastructure.Database;
 using GoalCalendar.UserIdentity.Data.Core.Users;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace GoalCalendar.Utilities.AspIdentity
