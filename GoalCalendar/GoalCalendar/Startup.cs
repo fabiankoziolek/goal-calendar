@@ -1,5 +1,6 @@
 ﻿using GoalCalendar.Infrastructure.AutoMapper;
 using GoalCalendar.Infrastructure.Database;
+using GoalCalendar.Utilities.AspIdentity;
 using GoalCalendar.Utilities.AutomaticDI;
 using GoalCalendar.Utilities.Swagger;
 using GoalCalendar.Utilities.Exceptions;
@@ -23,10 +24,11 @@ namespace GoalCalendar
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddSwagger();
             services.ConfigureDependencies();
             services.AddDatabaseContext(Configuration);
+            services.AddAspIdentity();
             services.AddMapper();
         }
 
