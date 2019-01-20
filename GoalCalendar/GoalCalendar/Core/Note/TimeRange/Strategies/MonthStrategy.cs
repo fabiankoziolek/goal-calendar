@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using GoalCalendar.Core.Note.TimeRange.Strategies.Interface;
 using GoalCalendar.Infrastructure.Database;
-using GoalCalendar.Infrastructure.Database.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace GoalCalendar.Core.Note.TimeRange.Strategies

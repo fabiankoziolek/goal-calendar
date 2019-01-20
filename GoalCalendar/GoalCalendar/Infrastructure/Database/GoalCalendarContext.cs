@@ -1,5 +1,4 @@
 using GoalCalendar.Core.Note;
-using GoalCalendar.Infrastructure.Database.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace GoalCalendar.Infrastructure.Database
