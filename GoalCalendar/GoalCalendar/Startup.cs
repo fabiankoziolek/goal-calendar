@@ -1,4 +1,5 @@
-﻿using GoalCalendar.Infrastructure.AutoMapper;
+﻿using GoalCalendar.Core.Identity;
+using GoalCalendar.Infrastructure.AutoMapper;
 using GoalCalendar.Infrastructure.Database;
 using GoalCalendar.Utilities.AspIdentity;
 using GoalCalendar.Utilities.AutomaticDI;
@@ -39,6 +40,7 @@ namespace GoalCalendar
             services.ConfigureDependencies();
             services.AddDatabaseContext(Configuration);
             services.AddAspIdentity(Configuration);
+            services.AddAdminPolicy();
             services.AddMapper();
             services.AddCors();
         }
