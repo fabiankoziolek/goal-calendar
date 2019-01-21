@@ -4,6 +4,7 @@ using GoalCalendar.Utilities.AspIdentity;
 using GoalCalendar.Utilities.AutomaticDI;
 using GoalCalendar.Utilities.Swagger;
 using GoalCalendar.Utilities.Exceptions;
+using GoalCalendar.Web.Cors;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -30,6 +31,7 @@ namespace GoalCalendar
             services.AddDatabaseContext(Configuration);
             services.AddAspIdentity();
             services.AddMapper();
+            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,6 +50,7 @@ namespace GoalCalendar
             app.UseMiddleware<ExceptionHandlingMiddleware>();
             app.UseHttpsRedirection();
             app.UseMvc();
+            app.UseCors(builder => builder.AllowAnyOrigin());
         }
     }
 }
