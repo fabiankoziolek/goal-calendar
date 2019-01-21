@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace GoalCalendar.UserIdentity.Data.Core.Users
 {
-    public class UserService
+    public class UserService : IUserService
     {
         private readonly UserDbContext _context;
 
