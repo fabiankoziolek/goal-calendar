@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoalCalendarTest", "GoalCal
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GoalCalendar.UserIdentity.Data", "GoalCalendar.User.Data\GoalCalendar.UserIdentity.Data.csproj", "{84BDBD0B-44BF-420E-937E-7123B2371B79}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServer", "IdentityServer\IdentityServer.csproj", "{A4C44708-DF52-4AFE-A589-BF52C46F6F47}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{84BDBD0B-44BF-420E-937E-7123B2371B79}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{84BDBD0B-44BF-420E-937E-7123B2371B79}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{84BDBD0B-44BF-420E-937E-7123B2371B79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4C44708-DF52-4AFE-A589-BF52C46F6F47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4C44708-DF52-4AFE-A589-BF52C46F6F47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4C44708-DF52-4AFE-A589-BF52C46F6F47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4C44708-DF52-4AFE-A589-BF52C46F6F47}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
