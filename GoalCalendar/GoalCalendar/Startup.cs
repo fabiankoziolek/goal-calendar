@@ -1,4 +1,5 @@
-﻿using GoalCalendar.Infrastructure.AutoMapper;
+﻿using GoalCalendar.Core.Identity;
+using GoalCalendar.Infrastructure.AutoMapper;
 using GoalCalendar.Infrastructure.Database;
 using GoalCalendar.Utilities.AspIdentity;
 using GoalCalendar.Utilities.AutomaticDI;
@@ -25,10 +26,21 @@ namespace GoalCalendar
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.AddAuthentication("Bearer")
+                .AddIdentityServerAuthentication(options =>
+                {
+                    options.Authority = "http://localhost:5000";
+                    options.RequireHttpsMetadata = false;
+
+                    options.ApiName = "goalCalendarApi";
+                });
+
             services.AddSwagger();
             services.ConfigureDependencies();
             services.AddDatabaseContext(Configuration);
-            services.AddAspIdentity();
+            services.AddAspIdentity(Configuration);
+            services.AddAdminPolicy();
             services.AddMapper();
             services.AddCors();
         }
