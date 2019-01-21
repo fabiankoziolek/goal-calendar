@@ -25,6 +25,16 @@ namespace GoalCalendar
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.AddAuthentication("Bearer")
+                .AddIdentityServerAuthentication(options =>
+                {
+                    options.Authority = "http://localhost:5000";
+                    options.RequireHttpsMetadata = false;
+
+                    options.ApiName = "goalCalendarApi";
+                });
+
             services.AddSwagger();
             services.ConfigureDependencies();
             services.AddDatabaseContext(Configuration);
