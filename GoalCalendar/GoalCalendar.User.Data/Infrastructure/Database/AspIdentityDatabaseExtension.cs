@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using GoalCalendar.UserIdentity.Data.Core.Users;
+﻿using GoalCalendar.UserIdentity.Data.Core.Users;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
