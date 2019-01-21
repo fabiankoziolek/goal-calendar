@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace GoalCalendar.Core.Identity.Web
+﻿namespace GoalCalendar.Core.Identity.Web
 {
     public class UserRequest
     {

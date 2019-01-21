@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
+﻿using System.Net.Http;
 using System.Threading.Tasks;
 using AutoMapper;
-using GoalCalendar.Core.Identity.Web;
 using GoalCalendar.UserIdentity.Data.Core.Users;
 using IdentityModel.Client;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
 
-namespace GoalCalendar.Core.UserIdentity.Web
+namespace GoalCalendar.Core.Identity.Web
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -20,15 +15,13 @@ namespace GoalCalendar.Core.UserIdentity.Web
     {
         private readonly IMapper _mapper;
         private readonly UserManager<User> _userManager;
-        private readonly RoleManager<IdentityRole<int>> _roleManager;
         private readonly IUserService _userService;
 
-        public IdentityController(IMapper mapper, UserManager<User> userManager, IUserService userService, RoleManager<IdentityRole<int>> roleManager)
+        public IdentityController(IMapper mapper, UserManager<User> userManager, IUserService userService)
         {
             _mapper = mapper;
             _userService = userService;
             _userManager = userManager;
-            _roleManager = roleManager;
         }
 
         [HttpGet("{id}")]
@@ -125,6 +118,5 @@ namespace GoalCalendar.Core.UserIdentity.Web
             await _userManager.AddToRoleAsync(user, "Admin");
             return Ok();
         }
-
     }
 }
