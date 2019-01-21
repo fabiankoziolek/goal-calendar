@@ -38,7 +38,7 @@ namespace GoalCalendar
             services.AddSwagger();
             services.ConfigureDependencies();
             services.AddDatabaseContext(Configuration);
-            services.AddAspIdentity();
+            services.AddAspIdentity(Configuration);
             services.AddMapper();
             services.AddCors();
         }
