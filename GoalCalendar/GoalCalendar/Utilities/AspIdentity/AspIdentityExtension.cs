@@ -33,7 +33,7 @@ namespace GoalCalendar.Utilities.AspIdentity
                 options.User.RequireUniqueEmail = true;
             });
 
-            services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IUserIdentityService, UserService>();
         }
     }
 }

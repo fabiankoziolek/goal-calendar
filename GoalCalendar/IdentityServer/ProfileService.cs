@@ -13,12 +13,12 @@ namespace IdentityServer
 {
     public class ProfileService : IProfileService
     {
-        private readonly IUserService _userService;
+        private readonly IUserIdentityService _userIdentityService;
         private readonly UserManager<User> _userManager;
 
-        public ProfileService(IUserService userService, UserManager<User> userManager)
+        public ProfileService(IUserIdentityService userIdentityService, UserManager<User> userManager)
         {
-            _userService = userService;
+            _userIdentityService = userIdentityService;
             _userManager = userManager;
         }
 
@@ -27,7 +27,7 @@ namespace IdentityServer
             var sub = context.Subject.GetSubjectId();
             var subNumber = Convert.ToInt32(sub);
 
-            var user = await _userService.GetUserById(subNumber);
+            var user = await _userIdentityService.GetById(subNumber);
 
             var claims = await GetUserClaims(user);
 

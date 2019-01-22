@@ -15,19 +15,19 @@ namespace GoalCalendar.Core.Identity.Web
     {
         private readonly IMapper _mapper;
         private readonly UserManager<User> _userManager;
-        private readonly IUserService _userService;
+        private readonly IUserIdentityService _userIdentityService;
 
-        public IdentityController(IMapper mapper, UserManager<User> userManager, IUserService userService)
+        public IdentityController(IMapper mapper, UserManager<User> userManager, IUserIdentityService userIdentityService)
         {
             _mapper = mapper;
-            _userService = userService;
+            _userIdentityService = userIdentityService;
             _userManager = userManager;
         }
 
         [HttpGet("{id}")]
         public async Task<User> GetById(int id)
         {
-            return await _userService.GetUserById(id);
+            return await _userIdentityService.GetById(id);
         }
       
         [HttpGet]
@@ -72,7 +72,7 @@ namespace GoalCalendar.Core.Identity.Web
                 return BadRequest();
             }
 
-            var user = await _userService.GetUserById(id);
+            var user = await _userIdentityService.GetById(id);
             var refreshToken = user.RefreshToken;
 
             var tokenResponse = await client.RequestRefreshTokenAsync(new RefreshTokenRequest()
@@ -114,7 +114,7 @@ namespace GoalCalendar.Core.Identity.Web
         [HttpPut("{id}")]
         public async Task<IActionResult> SetAdmin(int id)
         {
-            var user = await _userService.GetUserById(id);
+            var user = await _userIdentityService.GetById(id);
             await _userManager.AddToRoleAsync(user, "Admin");
             return Ok();
         }

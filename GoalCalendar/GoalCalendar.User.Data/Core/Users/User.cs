@@ -10,5 +10,10 @@ namespace GoalCalendar.UserIdentity.Data.Core.Users
         {
             RefreshToken = refreshToken;
         }
+
+        public void Update(User user)
+        {
+            
+        }
     }
 }
