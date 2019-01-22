@@ -2,8 +2,8 @@
 
 namespace GoalCalendar.UserIdentity.Data.Core.Users
 {
-    public interface IUserService
+    public interface IUserIdentityService
     {
-        Task<User> GetUserById(int id);
+        Task<User> GetById(int id);
     }
 }
