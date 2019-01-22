@@ -13,7 +13,9 @@ namespace GoalCalendar.UserIdentity.Data.Core.Users
 
         public void Update(User user)
         {
-            
+            UserName = user.UserName;
+            Email = user.Email;
+            PhoneNumber = user.PhoneNumber;
         }
     }
 }
