@@ -1,4 +1,5 @@
-﻿using GoalCalendar.Core.Identity;
+﻿using FluentValidation.AspNetCore;
+using GoalCalendar.Core.Identity;
 using GoalCalendar.Infrastructure.AutoMapper;
 using GoalCalendar.Infrastructure.Database;
 using GoalCalendar.Utilities.AspIdentity;
@@ -25,7 +26,8 @@ namespace GoalCalendar
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+                .AddFluentValidation();
 
             services.AddAuthentication("Bearer")
                 .AddIdentityServerAuthentication(options =>
