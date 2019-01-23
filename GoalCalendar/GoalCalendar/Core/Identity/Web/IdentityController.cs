@@ -30,8 +30,8 @@ namespace GoalCalendar.Core.Identity.Web
             return await _userIdentityService.GetById(id);
         }
       
-        [HttpGet]
-        public async Task<ActionResult<JObject>> Get(UserRequest userRequest)
+        [HttpPost("access")]
+        public async Task<ActionResult<JObject>> GetAccessToken(UserRequest userRequest)
         {
             // discover endpoints from metadata
             var client = new HttpClient();
@@ -61,8 +61,8 @@ namespace GoalCalendar.Core.Identity.Web
             return Ok(tokenResponse.Json);
         }
 
-        [HttpGet("/refresh/{id}")]
-        public async Task<ActionResult<JObject>> PostRefreshToken(int id)
+        [HttpGet("refresh/{id}")]
+        public async Task<ActionResult<JObject>> GetRefreshToken(int id)
         {
             // discover endpoints from metadata
             var client = new HttpClient();
@@ -107,7 +107,7 @@ namespace GoalCalendar.Core.Identity.Web
                 }
             }
 
-            return BadRequest();
+            return BadRequest(result.Errors);
         }
 
         // PUT: api/User/5
