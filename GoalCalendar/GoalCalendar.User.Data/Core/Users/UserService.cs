@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using GoalCalendar.UserIdentity.Data.Core.Users.Web;
+﻿using System.Threading.Tasks;
 using GoalCalendar.UserIdentity.Data.Infrastructure.Database;
 using Microsoft.EntityFrameworkCore;
 

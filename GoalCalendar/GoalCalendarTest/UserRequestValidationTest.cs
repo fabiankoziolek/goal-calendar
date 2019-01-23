@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using FluentValidation.TestHelper;
+﻿using FluentValidation.TestHelper;
 using GoalCalendar.Core.Identity.Validators;
 using Xunit;
 
