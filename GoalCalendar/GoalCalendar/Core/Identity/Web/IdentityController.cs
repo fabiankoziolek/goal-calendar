@@ -58,11 +58,11 @@ namespace GoalCalendar.Core.Identity.Web
                 await _userManager.UpdateAsync(user);
             }
 
-            return Ok(tokenResponse.Json);
+            return Ok(tokenResponse.AccessToken);
         }
 
-        [HttpGet("refresh/{id}")]
-        public async Task<ActionResult<JObject>> GetRefreshToken(int id)
+        [HttpPost("refresh/{id}")]
+        public async Task<ActionResult<JObject>> RefreshToken(int id)
         {
             // discover endpoints from metadata
             var client = new HttpClient();
@@ -84,10 +84,10 @@ namespace GoalCalendar.Core.Identity.Web
                 RefreshToken = refreshToken,
             });
 
-            return Ok(tokenResponse.Json);
+            return Ok(tokenResponse.AccessToken);
         }
 
-        [HttpPost]
+        [HttpPost("register")]
         public async Task<IActionResult> Post(UserRegistrationRequest userModel)
         {
             var newUser = _mapper.Map<User>(userModel);
@@ -111,10 +111,10 @@ namespace GoalCalendar.Core.Identity.Web
         }
 
         // PUT: api/User/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> SetAdmin(int id)
+        [HttpPut("admin/{userName}")]
+        public async Task<IActionResult> SetAdmin(string userName)
         {
-            var user = await _userIdentityService.GetById(id);
+            var user = await _userManager.FindByNameAsync(userName);
             await _userManager.AddToRoleAsync(user, "Admin");
             return Ok();
         }

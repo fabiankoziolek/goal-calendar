@@ -38,7 +38,7 @@ namespace GoalCalendar.UserIdentity.Data.Core.Users
             var userToUpdate = await GetById(id);
             userToUpdate.Update(user);
             _context.Update(userToUpdate);
-            _context.SaveChangesAsync().ConfigureAwait(false);
+            await _context.SaveChangesAsync().ConfigureAwait(false);
         }
 
         public async Task Delete(int id)
